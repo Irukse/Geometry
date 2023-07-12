@@ -1,0 +1,11 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=69f7d5f5_002Dd227_002D45bb_002Daa85_002D217976142e85/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="DistributorFigures_RadiusNotNull_CanBeSuccess" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::EB8BB90C-F56B-4FAB-8D5C-613E4C075729::net7.0::Geometry.Tests.CircleTest.DistributorFigures_RadiusNotNull_CanBeSuccess&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8c90f2db_002D9b9f_002D47f4_002Da9d0_002Dc76e30628a29/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="DistributorFigures_RadiusNotNull_CanBeSuccess #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::EB8BB90C-F56B-4FAB-8D5C-613E4C075729::net7.0::Geometry.Tests.DistributorFiguresTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
