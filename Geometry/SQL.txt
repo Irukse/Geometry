@@ -1,0 +1,29 @@
+/* В базе данных MS SQL Server есть продукты и категории.
+ * Одному продукту может соответствовать много категорий, в одной категории может быть много продуктов.
+ * Напишите SQL запрос для выбора всех пар «Имя продукта – Имя категории».
+ * Если у продукта нет категорий, то его имя все равно должно выводиться.
+ */
+
+
+    Create.Table("Products")
+            .WithColumn("id").AsInt64().PrimaryKey().Identity()
+            .WithColumn("categories_id").AsInt64()
+            .WithColumn("name_products").AsString().Nullable();
+            
+    Create.Table("Categories")
+            .WithColumn("id").AsInt64().PrimaryKey().Identity()
+            .WithColumn("products_id").AsInt64()
+            .WithColumn("name_categories").AsString().Nullable();
+
+        Create.ForeignKey()
+            .FromTable("Products").ForeignColumn("categories_id")
+            .ToTable("Categories").PrimaryColumn("id");
+            
+                    Create.ForeignKey()
+                        .FromTable("Categories").ForeignColumn("products_id")
+                        .ToTable("Products").PrimaryColumn("id");
+
+SELECT P."name_products", C."name_categories"
+FROM Products P
+LEFT JOIN Categories C
+	ON C.Id = P.categories_id
