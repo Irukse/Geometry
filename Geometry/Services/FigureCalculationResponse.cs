@@ -3,7 +3,7 @@ namespace Geometry.Services;
 /// <summary>
 /// Request for <inheritdoc cref="DistributorFigures"/>
 /// </summary>
-public class FigureCalculationRequest
+public class FigureCalculationResponse
 {
     /// <summary>
     /// Area figure

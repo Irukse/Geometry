@@ -16,7 +16,7 @@ public class DistributorFigures
         _polygon = polygon;
     }
 
-    public FigureCalculationRequest GetFigureArea(FigureCalculationContext context)
+    public FigureCalculationResponse GetFigureArea(FigureCalculationContext context)
     {
         if (context.Radius != null)
         {

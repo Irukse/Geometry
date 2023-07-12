@@ -5,7 +5,7 @@ namespace Geometry.Services;
 /// </summary>
 public class CircleSquare : IFigureCalculation
 {
-    public virtual FigureCalculationRequest GetSquare(FigureCalculationContext context)
+    public virtual FigureCalculationResponse GetSquare(FigureCalculationContext context)
     {
         if (context.Radius <= 0.0)
         {
@@ -14,7 +14,7 @@ public class CircleSquare : IFigureCalculation
 
         var radius = (double)context.Radius;
         var square = GetCalculateRadius(radius);
-        var result = new FigureCalculationRequest
+        var result = new FigureCalculationResponse
         {
             Square = square
         };

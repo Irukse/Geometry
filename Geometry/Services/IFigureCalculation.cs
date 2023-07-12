@@ -10,5 +10,5 @@ public interface IFigureCalculation
     /// </summary>
     /// <param name="context"></param>
     /// <returns></returns>
-    public FigureCalculationRequest GetSquare(FigureCalculationContext context);
+    public FigureCalculationResponse GetSquare(FigureCalculationContext context);
 }

@@ -5,10 +5,10 @@ namespace Geometry.Services;
 /// </summary>
 public class PolygonSquare : IFigureCalculation
 {
-    public virtual FigureCalculationRequest GetSquare(FigureCalculationContext context)
+    public virtual FigureCalculationResponse GetSquare(FigureCalculationContext context)
     {
         var square = GetCalculateTriangle(context.LengthFigure);
-        var result = new FigureCalculationRequest
+        var result = new FigureCalculationResponse
         {
             Square = square.Item1,
             Rectangular = square.Item2,
