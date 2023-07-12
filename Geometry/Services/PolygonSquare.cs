@@ -35,11 +35,8 @@ public class PolygonSquare : IFigureCalculation
 
         var semiPerimeter = triangle.Sum() / 2d;
         var square = Math.Sqrt(
-            semiPerimeter
-            * (semiPerimeter - triangle[0])
-            * (semiPerimeter - triangle[1])
-            * (semiPerimeter - triangle[2])
-        );
+            semiPerimeter *
+            triangle.Select(x => semiPerimeter - x).Aggregate((x, y) => x * y));
 
         // is the triangle right angled 
         var shorterSides = triangle
