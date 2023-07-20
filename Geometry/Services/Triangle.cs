@@ -1,27 +1,20 @@
+using Geometry.Extensions;
+
 namespace Geometry.Services;
 
-/// <summary>
-/// Initial class for <inheritdoc cref="IFigureCalculation"/>
-/// </summary>
-public class PolygonSquare : IFigureCalculation
+public class Triangle : Figures
 {
-    public virtual FigureCalculationResponse GetSquare(FigureCalculationContext context)
+    public override double GetSquare(List<double> triangle, int precision)
     {
-        var square = GetCalculateTriangle(context.LengthFigure);
-        var result = new FigureCalculationResponse
+        if (triangle.Count != 3 )
         {
-            Square = square.Item1,
-            Rectangular = square.Item2,
-        };
-        return result;
-    }
-
-    private (double, bool) GetCalculateTriangle(IReadOnlyList<double> triangle)
-    {
+            throw new ArgumentException("The number of sides must be three");
+        }
+        
         var min = triangle.Min();
         if (min <= 0)
         {
-            throw new ArgumentException("side size must not be less 0");
+            throw new ArgumentException("Side size must not be less 0");
         }
 
         var maxEdge = triangle.Max();
@@ -37,14 +30,21 @@ public class PolygonSquare : IFigureCalculation
         var square = Math.Sqrt(
             semiPerimeter *
             triangle.Select(x => semiPerimeter - x).Aggregate((x, y) => x * y));
-
+        
+        square = square.RoundToPrecision(precision);
+        return square;
+    }
+    
+    public bool GetCalculateRightAngled(List<double> triangle)
+    {
+        var maxEdge = triangle.Max();
+        
         // is the triangle right angled 
         var shorterSides = triangle
             .TakeWhile(value => value < maxEdge)
             .Select(value => Math.Pow(value, 2))
             .Sum();
-        var rectangular = Math.Pow(maxEdge, 2) == shorterSides;
 
-        return (square, rectangular);
+        return Math.Pow(maxEdge, 2) == shorterSides;
     }
 }

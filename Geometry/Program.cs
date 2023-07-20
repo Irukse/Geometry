@@ -8,7 +8,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddTransient<IFigureCalculation, PolygonSquare>();
 //builder.Services.AddTransient<IFigureCalculation, CircleSquare>();
 var app = builder.Build();
 

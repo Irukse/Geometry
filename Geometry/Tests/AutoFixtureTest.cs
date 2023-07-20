@@ -9,17 +9,18 @@ namespace Geometry.Tests;
 public abstract class AutoFixtureTest
 {
     protected IFixture Fixture { get; }
-    protected internal Mock<DistributorFigures> Distributor { get; }
-    protected internal Mock<CircleSquare> CircleSquare { get; }
 
-    protected internal Mock<PolygonSquare> PolygonSquare { get; }
+    protected internal Mock<Circle> Circles { get; }
+
+    protected internal Mock<Triangle> Triangles { get; }
 
     protected AutoFixtureTest()
     {
         Fixture = new Fixture().Customize(new AutoMoqCustomization());
-        Distributor = Fixture.Freeze<Mock<DistributorFigures>>();
-        CircleSquare = Fixture.Freeze<Mock<CircleSquare>>();
-        PolygonSquare = Fixture.Freeze<Mock<PolygonSquare>>();
+
+        Circles = Fixture.Freeze<Mock<Circle>>();
+
+        Triangles = Fixture.Freeze<Mock<Triangle>>();
     }
 
     [SetUp]
@@ -30,8 +31,7 @@ public abstract class AutoFixtureTest
 
     protected virtual void RegisterMock()
     {
-        Fixture.Register(() => Distributor.Object);
-        Fixture.Register(() => CircleSquare.Object);
-        Fixture.Register(() => PolygonSquare.Object);
+        Fixture.Register(() => Circles.Object);
+        Fixture.Register(() => Triangles.Object);
     }
 }

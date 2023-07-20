@@ -4,26 +4,34 @@
  * Если у продукта нет категорий, то его имя все равно должно выводиться.
  */
 
-
-    Create.Table("Products")
-            .WithColumn("id").AsInt64().PrimaryKey().Identity()
-            .WithColumn("categories_id").AsInt64()
-            .WithColumn("name_products").AsString().Nullable();
-            
-    Create.Table("Categories")
-            .WithColumn("id").AsInt64().PrimaryKey().Identity()
-            .WithColumn("products_id").AsInt64()
+        Create.Table("Products")
+            .WithColumn("Id").AsInt32().NotNullable().PrimaryKey().Identity()
+            .WithColumn("Product_id").AsInt32().NotNullable().Unique()
+            .WithColumn("name_products").AsString().NotNullable();
+        
+        Create.Table("Categories")
+            .WithColumn("Id").AsInt64().PrimaryKey().Identity()
+            .WithColumn("Category_id").AsInt32().NotNullable().Unique()
             .WithColumn("name_categories").AsString().Nullable();
 
+        Create.Table("Products_Categories")
+            .WithColumn("Products_id").AsInt64().NotNullable()
+            .WithColumn("Categories_id").AsInt64();
+        
         Create.ForeignKey()
-            .FromTable("Products").ForeignColumn("categories_id")
-            .ToTable("Categories").PrimaryColumn("id");
+            .FromTable("Products_Categories").ForeignColumn("Products_id")
+            .ToTable("Products").PrimaryColumn("Product_id");
+        
+        Create.ForeignKey()
+            .FromTable("Products_Categories").ForeignColumn("Categories_id")
+            .ToTable("Categories").PrimaryColumn("Category_id");
             
-                    Create.ForeignKey()
-                        .FromTable("Categories").ForeignColumn("products_id")
-                        .ToTable("Products").PrimaryColumn("id");
+            
+             WITH pr as (SELECT p.name_products as pr_name, pc."Categories_id" as cat
+             FROM public."Products"  p
+                 Left join public."Products_Categories" as pc on p."Product_id" = pc."Products_id")
+             Select pr.pr_name, c.name_categories
+                 From pr 
+                 Left Join public."Categories" as c on pr.cat = c."Category_id";
+)
 
-SELECT P."name_products", C."name_categories"
-FROM Products P
-LEFT JOIN Categories C
-	ON C.Id = P.categories_id
