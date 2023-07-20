@@ -33,5 +33,3 @@
              Select pr.pr_name, c.name_categories
                  From pr 
                  Left Join public."Categories" as c on pr.cat = c."Category_id";
-)
-

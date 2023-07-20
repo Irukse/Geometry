@@ -1,10 +1,54 @@
 using Geometry.Extensions;
+using Geometry.Library;
 
 namespace Geometry.Services;
 
+/// <summary>
+/// Figure triangle
+/// </summary>
 public class Triangle : Figures
 {
-    public override double GetSquare(List<double> triangle, int precision)
+    private List<double> _triangleFigure;
+
+    public Triangle(List<double> triangleFigure)
+    {
+        _triangleFigure = triangleFigure;
+    }
+    
+    /// <inheritdoc />
+    public override double GetSquare(int precision)
+    {
+        var square = GetSquareTriangle(_triangleFigure);
+        square = square.RoundToPrecision(precision);
+        
+        return square;
+    }
+    
+    /// <summary>
+    /// Triangle squareness test method
+    /// </summary>
+    /// <param name="triangle"></param>
+    /// <returns></returns>
+    public bool GetCalculateRightAngled(List<double> triangle)
+    {
+        var maxEdge = triangle.Max();
+        
+        // is the triangle right angled 
+        var shorterSides = triangle
+            .TakeWhile(value => value < maxEdge)
+            .Select(value => Math.Pow(value, 2))
+            .Sum();
+
+        return Math.Pow(maxEdge, 2) == shorterSides;
+    }
+    
+    /// <summary>
+    /// Get square for triangle on both sides
+    /// </summary>
+    /// <param name="triangle"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    private double GetSquareTriangle(List<double> triangle)
     {
         if (triangle.Count != 3 )
         {
@@ -30,21 +74,7 @@ public class Triangle : Figures
         var square = Math.Sqrt(
             semiPerimeter *
             triangle.Select(x => semiPerimeter - x).Aggregate((x, y) => x * y));
-        
-        square = square.RoundToPrecision(precision);
-        return square;
-    }
-    
-    public bool GetCalculateRightAngled(List<double> triangle)
-    {
-        var maxEdge = triangle.Max();
-        
-        // is the triangle right angled 
-        var shorterSides = triangle
-            .TakeWhile(value => value < maxEdge)
-            .Select(value => Math.Pow(value, 2))
-            .Sum();
 
-        return Math.Pow(maxEdge, 2) == shorterSides;
+        return square;
     }
 }

@@ -1,19 +1,11 @@
-using AutoFixture;
 using Geometry.Services;
 using NUnit.Framework;
 
 namespace Geometry.Tests;
 
-public class TriangleTests : AutoFixtureTest
+public class TriangleTests
 {
-    private readonly Triangle _triangle;
-
-    public TriangleTests()
-    {
-        _triangle = Fixture.Create<Triangle>();;
-    }
-    
-        [Test]
+    [Test]
     public void Triangle_DataCorrect_CanBeSuccess_CanBeTriangleRight()
     {
         //Arrange
@@ -24,10 +16,12 @@ public class TriangleTests : AutoFixtureTest
             5d,
         };
 
+        var figure = new Triangle(triangle);
+
         //Act
-        var square = _triangle.GetSquare(triangle, 3);
-        var rightAngled = _triangle.GetCalculateRightAngled(triangle);
-        
+        var square = figure.GetSquare(3);
+        var rightAngled = figure.GetCalculateRightAngled(triangle);
+
         //Assert
         Assert.AreEqual(6, square);
         Assert.AreEqual(true, rightAngled);
@@ -43,10 +37,11 @@ public class TriangleTests : AutoFixtureTest
             4d,
             5d,
         };
-        
+        var figure = new Triangle(triangle);
+
         //Act
-        var square = _triangle.GetSquare(triangle, 3);
-        var rightAngled = _triangle.GetCalculateRightAngled(triangle);
+        var square = figure.GetSquare(3);
+        var rightAngled = figure.GetCalculateRightAngled(triangle);
 
         //Assert
         Assert.AreEqual(7.806d, square);
@@ -64,8 +59,9 @@ public class TriangleTests : AutoFixtureTest
             5d,
             6d,
         };
+        var figure = new Triangle(triangle);
 
         //Assert
-        Assert.Throws<ArgumentException>(() => _triangle.GetSquare(triangle, 3));
+        Assert.Throws<ArgumentException>(() => figure.GetSquare(3));
     }
 }
