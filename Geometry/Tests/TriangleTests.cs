@@ -59,9 +59,8 @@ public class TriangleTests
             5d,
             6d,
         };
-        var figure = new Triangle(triangle);
 
         //Assert
-        Assert.Throws<ArgumentException>(() => figure.GetSquare(3));
+        Assert.Throws<ArgumentException>(() => new Triangle(triangle));
     }
 }

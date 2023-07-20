@@ -28,10 +28,7 @@ public class CircleTests
     [TestCase(-1)]
     public void Circle_NegativeRadius_ThrowsException(double radius)
     {
-        //Arrange
-        var figure = new Circle(radius);
-
         //Assert
-        Assert.Throws<ArgumentException>(() => figure.GetSquare(3));
+        Assert.Throws<ArgumentException>(() => new Circle(radius));
     }
 }

@@ -12,6 +12,26 @@ public class Triangle : Figures
 
     public Triangle(List<double> triangleFigure)
     {
+        if (triangleFigure.Count != 3 )
+        {
+            throw new ArgumentException("The number of sides must be three");
+        }
+        
+        var min = triangleFigure.Min();
+        if (min <= 0)
+        {
+            throw new ArgumentException("Side size must not be less 0");
+        }
+
+        var maxEdge = triangleFigure.Max();
+        var perimeter = triangleFigure.Sum();
+
+        if (maxEdge > (perimeter - maxEdge))
+        {
+            throw new ArgumentException(
+                "The longest side of the triangle must be less than the sum of the other sides");
+        }
+        
         _triangleFigure = triangleFigure;
     }
     
@@ -42,6 +62,7 @@ public class Triangle : Figures
         return Math.Pow(maxEdge, 2) == shorterSides;
     }
     
+    
     /// <summary>
     /// Get square for triangle on both sides
     /// </summary>
@@ -50,26 +71,6 @@ public class Triangle : Figures
     /// <exception cref="ArgumentException"></exception>
     private double GetSquareTriangle(List<double> triangle)
     {
-        if (triangle.Count != 3 )
-        {
-            throw new ArgumentException("The number of sides must be three");
-        }
-        
-        var min = triangle.Min();
-        if (min <= 0)
-        {
-            throw new ArgumentException("Side size must not be less 0");
-        }
-
-        var maxEdge = triangle.Max();
-        var perimeter = triangle.Sum();
-
-        if (maxEdge > (perimeter - maxEdge))
-        {
-            throw new ArgumentException(
-                "The longest side of the triangle must be less than the sum of the other sides");
-        }
-
         var semiPerimeter = triangle.Sum() / 2d;
         var square = Math.Sqrt(
             semiPerimeter *

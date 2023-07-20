@@ -12,6 +12,10 @@ public class Circle : Figures
 
     public Circle(double circleRadius)
     {
+        if (circleRadius <= 0.0)
+        {
+            throw new ArgumentException("radius must not be less 0");
+        }
         this._circleRadius = circleRadius;
     }
     
@@ -32,10 +36,6 @@ public class Circle : Figures
     /// <exception cref="ArgumentException"></exception>
     private double GetSquareCircle(double radius)
     {
-        if (radius <= 0.0)
-        {
-            throw new ArgumentException("radius must not be less 0");
-        }
         return Math.PI * Math.Pow(radius, 2d);
     }
 }
