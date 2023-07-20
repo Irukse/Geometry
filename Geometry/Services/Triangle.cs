@@ -62,7 +62,6 @@ public class Triangle : Figures
         return Math.Pow(maxEdge, 2) == shorterSides;
     }
     
-    
     /// <summary>
     /// Get square for triangle on both sides
     /// </summary>
